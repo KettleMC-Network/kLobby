@@ -1,20 +1,26 @@
 package net.kettlemc.lobby;
 
-import net.kettlemc.lobby.command.BuildCommand;
-import net.kettlemc.lobby.config.Configuration;
-import net.kettlemc.lobby.config.Messages;
-import net.kettlemc.lobby.listener.LobbyListener;
-import net.kettlemc.lobby.loading.Loadable;
 import net.kettlemc.kcommon.bukkit.ContentManager;
+import net.kettlemc.kcommon.data.DataHandler;
+import net.kettlemc.kcommon.data.HibernateDataHandler;
 import net.kettlemc.kcommon.language.MessageManager;
 import net.kettlemc.klanguage.api.LanguageAPI;
 import net.kettlemc.klanguage.bukkit.BukkitLanguageAPI;
+import net.kettlemc.lobby.command.BuildCommand;
+import net.kettlemc.lobby.config.Configuration;
+import net.kettlemc.lobby.config.Messages;
+import net.kettlemc.lobby.data.LobbyPlayer;
+import net.kettlemc.lobby.listener.BuildListener;
+import net.kettlemc.lobby.listener.DataListener;
+import net.kettlemc.lobby.loading.Loadable;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public final class Lobby implements Loadable {
 
@@ -25,6 +31,10 @@ public final class Lobby implements Loadable {
     private final JavaPlugin plugin;
     private BukkitAudiences adventure;
     private MessageManager messageManager;
+
+    private HibernateDataHandler<LobbyPlayer> dataHandler;
+
+    public static final ConcurrentMap<UUID, LobbyPlayer> PLAYERS = new ConcurrentHashMap<>();
 
     public Lobby(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -50,11 +60,25 @@ public final class Lobby implements Loadable {
             this.plugin.getLogger().severe("Failed to load messages!");
         }
 
+        this.dataHandler = new HibernateDataHandler<>(LobbyPlayer.class,
+                (id) -> new LobbyPlayer(id, Bukkit.getWorlds().get(0).getSpawnLocation()),
+                Configuration.SQL_HOST.getValue(),
+                String.valueOf(Configuration.SQL_PORT.getValue()),
+                Configuration.SQL_DATABASE.getValue(),
+                Configuration.SQL_USERNAME.getValue(),
+                Configuration.SQL_PASSWORD.getValue()
+        );
+
+        if (!this.dataHandler.initialize()) {
+            this.plugin.getLogger().severe("Failed to connect to the database!");
+        }
+
         this.adventure = BukkitAudiences.create(this.plugin);
         this.messageManager = new MessageManager(Messages.PREFIX, LANGUAGE_API, this.adventure());
 
         this.plugin.getLogger().info("Registering listeners and commands...");
-        this.contentManager.registerListener(new LobbyListener());
+        this.contentManager.registerListener(new BuildListener());
+        this.contentManager.registerListener(new DataListener());
         this.contentManager.registerCommand("build", new BuildCommand());
 
     }
@@ -76,25 +100,6 @@ public final class Lobby implements Loadable {
         return plugin;
     }
 
-    /**
-     * Checks if the sender has permission to run the command.
-     * When other is true, it checks for the permission to run the command on other players.
-     * When other is false, it checks for the permission to run the command on themselves.
-     * When the sender is a console, it always returns true.
-     * <p>
-     * When the sender has the permission to run the command on other players, they also have the permission to run the command on themselves.
-     *
-     * @param sender  The sender to check
-     * @param command The command to check
-     * @param other   Whether to check for the permission to run the command on other players
-     * @return True if the sender has permission to run the command, false otherwise
-     */
-    public boolean checkPermission(CommandSender sender, Command command, boolean other) {
-        return (sender instanceof ConsoleCommandSender)
-                || (sender.hasPermission(Configuration.PERMISSION_LAYOUT_OTHER.getValue().replace("%command%", command.getLabel())))
-                || (!other && sender.hasPermission(Configuration.PERMISSION_LAYOUT.getValue().replace("%command%", command.getLabel())));
-    }
-
 
     public ContentManager contentManager() {
         return contentManager;
@@ -102,5 +107,9 @@ public final class Lobby implements Loadable {
 
     public MessageManager messageManager() {
         return messageManager;
+    }
+
+    public DataHandler<LobbyPlayer> dataHandler() {
+        return dataHandler;
     }
 }

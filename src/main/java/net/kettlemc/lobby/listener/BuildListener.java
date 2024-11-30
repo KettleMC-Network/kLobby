@@ -9,7 +9,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
-public class LobbyListener implements Listener {
+public class BuildListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
