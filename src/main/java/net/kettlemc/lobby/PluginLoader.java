@@ -9,7 +9,7 @@ public class PluginLoader extends org.bukkit.plugin.java.JavaPlugin {
 
     @Override
     public void onLoad() {
-        this.plugin = new Plugin(this);
+        this.plugin = new Lobby(this);
         plugin.onLoad();
     }
 

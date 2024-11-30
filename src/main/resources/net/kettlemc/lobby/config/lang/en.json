@@ -1,4 +1,17 @@
 {
-  "prefix": "<blue>Lobby</blue> <dark_gray>»</dark_gray> ",
-  "no-permission": "<gray>You're not allowed to use this command.</gray>"
+  "miscellaneous": {
+    "prefix": "<blue>Lobby</blue> <dark_gray>»</dark_gray> ",
+    "no-permission": "<gray>You're not allowed to use this command.</gray>",
+    "player-only": "<gray>This command can only be used by players.</gray>",
+    "console-only": "<gray>This command can only be used by the console.</gray>",
+    "player-not-found": "<gray>Please specify a valid player.</gray>"
+  },
+  "command": {
+    "build": {
+      "enabled": "<gray>Build mode has been enabled.</gray>",
+      "enabled-other": "<gray>Build mode has been enabled for <dark_aqua><target></dark_aqua>.</gray>",
+      "disabled": "<gray>Build mode has been disabled.</gray>",
+      "disabled-other": "<gray>Build mode has been disabled for <dark_aqua><target></dark_aqua>.</gray>"
+    }
+  }
 }

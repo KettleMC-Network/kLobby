@@ -13,7 +13,8 @@ public class Configuration {
     public static final Path CONFIG_DIRECTORY = Paths.get("plugins", "kLobby");
     private static final Config CONFIG = HoconConfig.of(CONFIG_DIRECTORY.resolve("config.conf").toFile(), "Config for kLobby");
 
-    public static final StringConfigEntry PERMISSION_LAYOUT = StringConfigEntry.of(CONFIG, "settings.permission-prefix", "The default permission layout", "system.lobby.%s");
+    public static final StringConfigEntry PERMISSION_LAYOUT = StringConfigEntry.of(CONFIG, "settings.permission.layout", "The default permission layout", "system.lobby.%s");
+    public static final StringConfigEntry PERMISSION_LAYOUT_OTHER = StringConfigEntry.of(CONFIG, "settings.permission.layout-other", "The default permission layout for others", "system.lobby.%s.other");
 
     private Configuration() {
     }

@@ -7,3 +7,8 @@ api-version: ${apiversion}
 website: ${website}
 depend:
   - "kLoader"
+commands:
+  build:
+    description: Toggle build mode for players
+    usage: /build [<player>]
+    aliases: [ buildmode, baumodus ]

@@ -19,7 +19,15 @@ public class Messages {
     private static final Path LANGUAGE_PATH = Paths.get("plugins", "Plugin", "languages");
     private static final Slams LANGUAGE_MANAGER = Slams.create(DEFAULT_LANGUAGE);
 
-    public static final AdventureMessage PREFIX = AdventureMessage.of("prefix", LANGUAGE_MANAGER);
+    public static final AdventureMessage PREFIX = AdventureMessage.of("miscellaneous.prefix", LANGUAGE_MANAGER);
+    public static final AdventureMessage NO_PERMISSION = AdventureMessage.of("miscellaneous.no-permission", LANGUAGE_MANAGER);
+    public static final AdventureMessage PLAYER_ONLY = AdventureMessage.of("miscellaneous.player-only", LANGUAGE_MANAGER);
+    public static final AdventureMessage PLAYER_NOT_FOUND = AdventureMessage.of("miscellaneous.player-not-found", LANGUAGE_MANAGER);
+
+    public static final AdventureMessage BUILD_ENABLED = AdventureMessage.of("command.build.enabled", LANGUAGE_MANAGER);
+    public static final AdventureMessage BUILD_ENABLED_OTHER = AdventureMessage.of("command.build.enabled-other", LANGUAGE_MANAGER);
+    public static final AdventureMessage BUILD_DISABLED = AdventureMessage.of("command.build.disabled", LANGUAGE_MANAGER);
+    public static final AdventureMessage BUILD_DISABLED_OTHER = AdventureMessage.of("command.build.disabled-other", LANGUAGE_MANAGER);
 
     private Messages() {
     }
@@ -55,7 +63,7 @@ public class Messages {
         for (File file : Objects.requireNonNull(LANGUAGE_PATH.toFile().listFiles())) {
             if (file.isDirectory()) loadFromFilesInDirectory(file);
             else if (file.getName().endsWith(".json"))
-                LANGUAGE_MANAGER.load(DEFAULT_LANGUAGE, JacksonParser.createJsonParser(file));
+                LANGUAGE_MANAGER.load(file.getName().replace(".json", ""), JacksonParser.createJsonParser(file));
         }
     }
 
