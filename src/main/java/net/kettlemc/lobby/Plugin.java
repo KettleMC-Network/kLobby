@@ -1,8 +1,8 @@
-package net.kettlemc.example;
+package net.kettlemc.lobby;
 
-import net.kettlemc.example.config.Configuration;
-import net.kettlemc.example.config.Messages;
-import net.kettlemc.example.loading.Loadable;
+import net.kettlemc.lobby.config.Configuration;
+import net.kettlemc.lobby.config.Messages;
+import net.kettlemc.lobby.loading.Loadable;
 import net.kettlemc.kcommon.bukkit.ContentManager;
 import net.kettlemc.kcommon.language.MessageManager;
 import net.kettlemc.klanguage.api.LanguageAPI;

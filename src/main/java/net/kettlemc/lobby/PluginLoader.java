@@ -1,7 +1,7 @@
-package net.kettlemc.example;
+package net.kettlemc.lobby;
 
 
-import net.kettlemc.example.loading.Loadable;
+import net.kettlemc.lobby.loading.Loadable;
 
 public class PluginLoader extends org.bukkit.plugin.java.JavaPlugin {
 
