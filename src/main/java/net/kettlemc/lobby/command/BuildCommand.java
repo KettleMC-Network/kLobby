@@ -1,6 +1,7 @@
 package net.kettlemc.lobby.command;
 
 import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.lobby.Lobby;
 import net.kettlemc.lobby.config.Messages;
 import org.bukkit.Bukkit;
@@ -21,7 +22,7 @@ public class BuildCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!Lobby.instance().checkPermission(sender, command, false)) {
+        if (!Essentials.instance().checkPermission(sender, command, false)) {
             Lobby.instance().messageManager().sendMessage(sender, Messages.NO_PERMISSION);
             return true;
         }
@@ -29,7 +30,7 @@ public class BuildCommand implements CommandExecutor, TabCompleter {
 
         if (args.length >= 1) {
 
-            if (!Lobby.instance().checkPermission(sender, command, true)) {
+            if (!Essentials.instance().checkPermission(sender, command, true)) {
                 Lobby.instance().messageManager().sendMessage(sender, Messages.NO_PERMISSION);
                 return true;
             }

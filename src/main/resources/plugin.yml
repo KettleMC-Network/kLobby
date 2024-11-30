@@ -7,6 +7,7 @@ api-version: ${apiversion}
 website: ${website}
 depend:
   - "kLoader"
+  - "kEssentials"
 commands:
   build:
     description: Toggle build mode for players
