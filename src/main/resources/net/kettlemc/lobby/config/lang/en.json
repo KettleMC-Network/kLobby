@@ -12,6 +12,47 @@
       "enabled-other": "<gray>Build mode has been enabled for <dark_aqua><target></dark_aqua>.</gray>",
       "disabled": "<gray>Build mode has been disabled.</gray>",
       "disabled-other": "<gray>Build mode has been disabled for <dark_aqua><target></dark_aqua>.</gray>"
+    },
+    "teleporter": {
+      "usage": "<gray>/teleporter add|remove</gray>",
+      "add": {
+        "usage": "<gray>/teleporter add <name></gray>",
+        "added": "<gray>Teleport <dark_aqua><name></dark_aqua> was added.</gray>",
+        "invalid-item": "<gray>Please hold an item.</gray>",
+        "already-exists": "<gray>Teleport <dark_aqua><name></dark_aqua> already exists.</gray>",
+        "could-not-add": "<gray>Teleport <dark_aqua><name></dark_aqua> couldn't be created.</gray>"
+      },
+      "remove": {
+        "usage": "<gray>/teleporter remove <name></gray>",
+        "removed": "<gray>Teleport <dark_aqua><name></dark_aqua> has been deleted.</gray>",
+        "does-not-exist": "<gray>Teleport <dark_aqua><name></dark_aqua> doesn't exist.</gray>",
+        "could-not-remove": "<gray>Teleport <dark_aqua><name></dark_aqua> couldn't be deleted.</gray>"
+      }
+    }
+  },
+  "item": {
+    "teleporter": {
+      "name": "<red>Teleporter</red> <dark_gray>»</dark_gray> <gray>Rightclick</gray>",
+      "lore": "<gray>Teleport to a gamemode.</gray>"
+    },
+    "grappling-hook": {
+      "name": "<dark_aqua>Grappling Hook</dark_aqua> <dark_gray>»</dark_gray> <gray>Rightclick</gray>",
+      "lore": "<gray>Swing yourself through the air!</gray>"
+    },
+    "visibility": {
+      "visible": {
+        "name": "<green>Sichtbarkeit<green> <dark_gray>»</dark_gray> <gray>Rightclick</gray></dark_aqua>",
+        "lore": "<gray>All players are <green>visible</green>.</gray>"
+      },
+      "hidden": {
+        "name": "<red>Sichtbarkeit<red> <dark_gray>»</dark_gray> <gray>Rightclick</gray></dark_aqua>",
+        "lore": "<gray>All players are <red>invisible</red>.</gray>"
+      }
+    }
+  },
+  "menu": {
+    "teleporter": {
+      "title": "<red>Teleporter</red>"
     }
   }
 }

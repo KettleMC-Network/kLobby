@@ -10,14 +10,15 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class BuildCommand implements CommandExecutor, TabCompleter {
 
-    private static final Set<UUID> BUILDERS = new HashSet<>();
-
+    private static final String BUILD_META = "kettlemc.lobby.build";
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -41,12 +42,12 @@ public class BuildCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
 
-            if (BUILDERS.contains(target.getUniqueId())) {
-                BUILDERS.remove(target.getUniqueId());
+            if (isBuilder(target)) {
+                toggleBuild(target, false);
                 Lobby.instance().messageManager().sendMessage(sender, Messages.BUILD_DISABLED_OTHER, Placeholder.of("target", (ctx, arg) -> target.getName()));
                 Lobby.instance().messageManager().sendMessage(target, Messages.BUILD_DISABLED);
             } else {
-                BUILDERS.add(target.getUniqueId());
+                toggleBuild(target, true);
                 Lobby.instance().messageManager().sendMessage(sender, Messages.BUILD_ENABLED_OTHER, Placeholder.of("target", (ctx, arg) -> target.getName()));
                 Lobby.instance().messageManager().sendMessage(target, Messages.BUILD_ENABLED);
             }
@@ -58,11 +59,11 @@ public class BuildCommand implements CommandExecutor, TabCompleter {
 
             Player player = (Player) sender;
 
-            if (BUILDERS.contains(player.getUniqueId())) {
-                BUILDERS.remove(player.getUniqueId());
+            if (isBuilder(player)) {
+                toggleBuild(player, false);
                 Lobby.instance().messageManager().sendMessage(player, Messages.BUILD_DISABLED);
             } else {
-                BUILDERS.add(player.getUniqueId());
+                toggleBuild(player, true);
                 Lobby.instance().messageManager().sendMessage(player, Messages.BUILD_ENABLED);
             }
         }
@@ -78,7 +79,15 @@ public class BuildCommand implements CommandExecutor, TabCompleter {
         }
     }
 
+    public void toggleBuild(Player player, boolean build) {
+        if (build) {
+            player.removeMetadata(BUILD_META, Lobby.instance().plugin());
+        } else {
+            player.setMetadata(BUILD_META, new FixedMetadataValue(Lobby.instance().plugin(), true));
+        }
+    }
+
     public static boolean isBuilder(Player player) {
-        return BUILDERS.contains(player.getUniqueId());
+        return player.hasMetadata(BUILD_META) && player.getMetadata(BUILD_META).get(0).asBoolean();
     }
 }

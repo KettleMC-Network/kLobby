@@ -12,6 +12,47 @@
       "enabled-other": "<gray>Der Build-Modus wurde für <dark_aqua><target></dark_aqua> aktiviert.</gray>",
       "disabled": "<gray>Der Build-Modus wurde deaktiviert.</gray>",
       "disabled-other": "<gray>Der Build-Modus wurde für <dark_aqua><target></dark_aqua> aktiviert.</gray>"
+    },
+    "teleporter": {
+      "usage": "<gray>/teleporter add|remove</gray>",
+      "add": {
+        "usage": "<gray>/teleporter add <Name></gray>",
+        "added": "<gray>Der Teleport <dark_aqua><name></dark_aqua> wurde erfolgreich erstellt.</gray>",
+        "invalid-item": "<gray>Bitte halte ein Item in der Hand.</gray>",
+        "already-exists": "<gray>Der Teleport <dark_aqua><name></dark_aqua> existiert bereits.</gray>",
+        "could-not-add": "<gray>Der Teleport <dark_aqua><name></dark_aqua> konnte nicht erstellt werden.</gray>"
+      },
+      "remove": {
+        "usage": "<gray>/teleporter remove <Name></gray>",
+        "removed": "<gray>Der Teleport <dark_aqua><name></dark_aqua> wurde erfolgreich gelöscht.</gray>",
+        "does-not-exist": "<gray>Der Teleport <dark_aqua><name></dark_aqua> existiert nicht.</gray>",
+        "could-not-remove": "<gray>Der Teleport <dark_aqua><name></dark_aqua> konnte nicht gelöscht werden.</gray>"
+      }
+    }
+  },
+  "item": {
+    "teleporter": {
+      "name": "<red>Teleporter</red> <dark_gray>»</dark_gray> <gray>Rechtsklick</gray>",
+      "lore": "<gray>Teleportiere dich zu allen Spielmodi</gray>"
+    },
+    "grappling-hook": {
+      "name": "<dark_aqua>Enterhaken</dark_aqua> <dark_gray>»</dark_gray> <gray>Rechtsklick</gray>",
+      "lore": "<gray>Schleudere dich durch die Lüfte!</gray>"
+    },
+    "visibility": {
+      "visible": {
+        "name": "<green>Sichtbarkeit<green> <dark_gray>»</dark_gray> <gray>Rechtsklick</gray></dark_aqua>",
+        "lore": "<gray>Alle Spieler sind <green>sichtbar</green>.</gray>"
+      },
+      "hidden": {
+        "name": "<red>Sichtbarkeit<red> <dark_gray>»</dark_gray> <gray>Rechtsklick</gray></dark_aqua>",
+        "lore": "<gray>Alle Spieler sind <red>unsichtbar</red>.</gray>"
+      }
+    }
+  },
+  "menu": {
+    "teleporter": {
+      "title": "<red>Teleporter</red>"
     }
   }
 }

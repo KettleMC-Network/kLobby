@@ -6,7 +6,7 @@ import org.bukkit.Location;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "players")
 public class LobbyPlayer {
 
     @Id
@@ -21,6 +21,8 @@ public class LobbyPlayer {
 
     private String world;
 
+    private Visibility visibility;
+
     public LobbyPlayer(String uuid, Location location) {
         this.uuid = uuid;
         this.x = location.getX();
@@ -29,27 +31,41 @@ public class LobbyPlayer {
         this.yaw = location.getYaw();
         this.pitch = location.getPitch();
         this.world = location.getWorld().getName();
+        this.visibility = Visibility.VISIBLE;
     }
 
     @Deprecated
     public LobbyPlayer() {
     }
 
-    public String getUuid() {
+    public String uuid() {
         return uuid;
     }
 
-    public Location getLocation() {
+    public Location location() {
         return new Location(world == null ? Bukkit.getWorlds().get(0) : Bukkit.getWorld(world), x, y, z, yaw, pitch);
     }
 
-    public void setLocation(Location location) {
+    public void location(Location location) {
         this.x = location.getX();
         this.y = location.getY();
         this.z = location.getZ();
         this.yaw = location.getYaw();
         this.pitch = location.getPitch();
         this.world = location.getWorld().getName();
+    }
+
+    public Visibility visibility() {
+        return visibility;
+    }
+
+    public void visibility(Visibility visibility) {
+        this.visibility = visibility;
+    }
+
+    public enum Visibility {
+        VISIBLE,
+        HIDDEN
     }
 
 }

@@ -3,4 +3,6 @@ dependencies {
 
     // Use "implementation" for dependencies that are not shaded into the final jar
     // Use "internal" for dependencies that are shaded into the final jar
+
+    internal("com.github.cryptomorin:XSeries:11.3.0")
 }

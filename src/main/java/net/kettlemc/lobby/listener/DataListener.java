@@ -20,7 +20,7 @@ public class DataListener implements Listener {
     @EventHandler
     public void onLogin(AsyncPlayerPreLoginEvent event) {
         try {
-            LobbyPlayer player = Lobby.instance().dataHandler().load(event.getUniqueId().toString()).get(10, TimeUnit.SECONDS);
+            LobbyPlayer player = Lobby.instance().playerDataHandler().load(event.getUniqueId().toString()).get(10, TimeUnit.SECONDS);
             Lobby.PLAYERS.put(event.getUniqueId(), player);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             event.setKickMessage("Failed to load player data!");
@@ -33,13 +33,14 @@ public class DataListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
+        // If the player doesn't have any data at this point, something failed during onLogin
         if (!Lobby.PLAYERS.containsKey(player.getUniqueId())) {
             Lobby.instance().plugin().getLogger().warning("Player " + player.getName() + " joined without having any data!");
             return;
         }
 
         if (Configuration.LAST_LOCATION_ON_JOIN.getValue()) {
-            player.teleport(Lobby.PLAYERS.get(player.getUniqueId()).getLocation());
+            player.teleport(Lobby.PLAYERS.get(player.getUniqueId()).location());
         }
     }
 
@@ -52,11 +53,11 @@ public class DataListener implements Listener {
             return;
         }
 
-        Lobby.PLAYERS.get(player.getUniqueId()).setLocation(player.getLocation());
+        Lobby.PLAYERS.get(player.getUniqueId()).location(player.getLocation());
 
         Bukkit.getScheduler().runTaskAsynchronously(Lobby.instance().plugin(), () -> {
             try {
-                Lobby.instance().dataHandler().save(Lobby.PLAYERS.get(player.getUniqueId())).get(10, TimeUnit.SECONDS);
+                Lobby.instance().playerDataHandler().save(Lobby.PLAYERS.get(player.getUniqueId())).get(10, TimeUnit.SECONDS);
             } catch (InterruptedException | ExecutionException | TimeoutException e) {
                 e.printStackTrace();
             }

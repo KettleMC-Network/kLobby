@@ -29,6 +29,37 @@ public class Messages {
     public static final AdventureMessage BUILD_DISABLED = AdventureMessage.of("command.build.disabled", LANGUAGE_MANAGER);
     public static final AdventureMessage BUILD_DISABLED_OTHER = AdventureMessage.of("command.build.disabled-other", LANGUAGE_MANAGER);
 
+    // Teleporter Command
+
+    public static final AdventureMessage TELEPORTER_USAGE = AdventureMessage.of("command.teleporter.usage", LANGUAGE_MANAGER);
+
+    public static final AdventureMessage TELEPORTER_ADD_USAGE = AdventureMessage.of("command.teleporter.add.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage TELEPORTER_ADDED = AdventureMessage.of("command.teleporter.add.added", LANGUAGE_MANAGER);
+    public static final AdventureMessage TELEPORTER_INVALID_ITEM = AdventureMessage.of("command.teleporter.add.invalid-item", LANGUAGE_MANAGER);
+    public static final AdventureMessage TELEPORTER_ALREADY_EXISTS = AdventureMessage.of("command.teleporter.add.already-exists", LANGUAGE_MANAGER);
+    public static final AdventureMessage TELEPORTER_COULD_NOT_ADD = AdventureMessage.of("command.teleporter.add.could-not-add", LANGUAGE_MANAGER);
+
+    public static final AdventureMessage TELEPORTER_REMOVED = AdventureMessage.of("command.teleporter.remove.removed", LANGUAGE_MANAGER);
+    public static final AdventureMessage TELEPORTER_REMOVE_USAGE = AdventureMessage.of("command.teleporter.remove.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage TELEPORTER_DOES_NOT_EXIST = AdventureMessage.of("command.teleporter.remove.does-not-exist", LANGUAGE_MANAGER);
+    public static final AdventureMessage TELEPORTER_COULD_NOT_REMOVE = AdventureMessage.of("command.teleporter.remove.could-not-remove", LANGUAGE_MANAGER);
+
+    // Items
+
+    public static final AdventureMessage ITEM_TELEPORTER_NAME = AdventureMessage.of("item.teleporter.name", LANGUAGE_MANAGER);
+    public static final AdventureMessage ITEM_TELEPORTER_LORE = AdventureMessage.of("item.teleporter.lore", LANGUAGE_MANAGER);
+    public static final AdventureMessage ITEM_GRAPPLING_HOOK_NAME = AdventureMessage.of("item.grappling-hook.name", LANGUAGE_MANAGER);
+    public static final AdventureMessage ITEM_GRAPPLING_HOOK_LORE = AdventureMessage.of("item.grappling-hook.lore", LANGUAGE_MANAGER);
+    public static final AdventureMessage ITEM_VISIBILITY_VISIBLE_NAME = AdventureMessage.of("item.visibility.visible.name", LANGUAGE_MANAGER);
+    public static final AdventureMessage ITEM_VISIBILITY_VISIBLE_LORE = AdventureMessage.of("item.visibility.visible.lore", LANGUAGE_MANAGER);
+    public static final AdventureMessage ITEM_VISIBILITY_HIDDEN_NAME = AdventureMessage.of("item.visibility.hidden.name", LANGUAGE_MANAGER);
+    public static final AdventureMessage ITEM_VISIBILITY_HIDDEN_LORE = AdventureMessage.of("item.visibility.hidden.lore", LANGUAGE_MANAGER);
+
+    // Menus
+
+    public static final AdventureMessage MENU_TELEPORTER_TITLE = AdventureMessage.of("menu.teleporter.title", LANGUAGE_MANAGER);
+
+
     private Messages() {
     }
 
